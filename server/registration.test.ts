@@ -2,6 +2,14 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import { appRouter } from "./routers";
 import type { TrpcContext } from "./_core/context";
 
+// Mock Resend to capture sent email parameters
+const mockSend = vi.fn().mockResolvedValue({ id: "test-email-id" });
+vi.mock("resend", () => ({
+  Resend: vi.fn().mockImplementation(() => ({
+    emails: { send: mockSend },
+  })),
+}));
+
 // Mock the notifyOwner function
 vi.mock("./_core/notification", () => ({
   notifyOwner: vi.fn().mockResolvedValue(true),
@@ -23,6 +31,8 @@ function createPublicContext(): TrpcContext {
 describe("registration.submit", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Ensure RESEND_API_KEY is set so the email branch is entered
+    process.env.RESEND_API_KEY = "re_test_placeholder";
   });
 
   it("submits registration with all required fields and returns success", async () => {
@@ -39,6 +49,25 @@ describe("registration.submit", () => {
     });
 
     expect(result).toEqual({ success: true });
+  });
+
+  it("sends email with correct from, to, and subject", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await caller.registration.submit({
+      fullName: "سارة أحمد",
+      phone: "0501234567",
+      email: "sara@example.com",
+      city: "الرياض",
+      interest: "استشارات تطويرية وشخصية",
+    });
+
+    expect(mockSend).toHaveBeenCalledOnce();
+    const callArgs = mockSend.mock.calls[0][0];
+    expect(callArgs.from).toBe("نبرة <info@nabra-sa.com>");
+    expect(callArgs.to).toEqual(["hmoody0990@gmail.com"]);
+    expect(callArgs.subject).toBe("تسجيل جديد - نبرة");
   });
 
   it("submits registration without optional message field", async () => {

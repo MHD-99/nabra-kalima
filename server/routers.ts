@@ -125,9 +125,9 @@ ${input.message ? `الرسالة: ${input.message}` : ""}
           try {
             const resend = new Resend(ENV.resendApiKey);
             await resend.emails.send({
-              from: "نبرة كلمة <onboarding@resend.dev>",
-              to: ["info@nabra-sa.com"],
-              subject: `📝 تسجيل جديد — ${input.fullName} من ${input.city}`,
+              from: "نبرة <info@nabra-sa.com>",
+              to: ["hmoody0990@gmail.com"],
+              subject: "تسجيل جديد - نبرة",
               html: htmlContent,
               text: textContent,
             });
