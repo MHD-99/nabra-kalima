@@ -177,28 +177,44 @@ function BtnSecondary({ href, children }: { href: string; children: React.ReactN
 }
 
 // ── Marquee ───────────────────────────────────────────────────
+const MARQUEE_TEXT =
+  "إلى زوار نبرة كلمة الأعزاء…   ◆   بعض الأثر لا يُقال…   ◆   بل يُشعر   ◆   ونبرة كلمة…   ◆   كان فيها من سجى… ما يكفي ليبقى         ";
+
+/**
+ * Seamless left-to-right marquee:
+ * - Two identical copies of the text sit side-by-side inside .marquee-outer
+ * - .marquee-outer is animated from translateX(-50%) → translateX(0)
+ * - When it reaches 0 it loops back to -50% invisibly — no gap, no jump
+ */
 function Marquee() {
-  const items = [
-    "إلى زوار نبرة كلمة الأعزاء...",
-    "بعض الأثر لا يُقال...",
-    "بل يُشعر",
-    "ونبرة كلمة...",
-    "كان فيها من سجى... ما يكفي ليبقى",
-    "إلى زوار نبرة كلمة الأعزاء...",
-    "بعض الأثر لا يُقال...",
-    "بل يُشعر",
-    "ونبرة كلمة...",
-    "كان فيها من سجى... ما يكفي ليبقى",
-  ];
-  const doubled = [...items, ...items];
+  const textStyle: React.CSSProperties = {
+    display: "inline-block",
+    whiteSpace: "nowrap",
+    color: C.white,
+    fontSize: "0.95rem",
+    fontWeight: 500,
+    fontStyle: "italic",
+    fontFamily: "'Tajawal', sans-serif",
+    userSelect: "none",
+  };
+
   return (
-    <div style={{ background: C.greenMid, padding: "14px 0", overflow: "hidden", whiteSpace: "nowrap" }}>
-      <div className="marquee-animate" style={{ display: "inline-flex", gap: 60 }}>
-        {doubled.map((item, i) => (
-          <span key={i} style={{ color: C.white, fontSize: "0.95rem", fontWeight: 500, display: "inline-flex", alignItems: "center", gap: 20, fontStyle: "italic", fontFamily: "'Tajawal', sans-serif" }}>
-            {item}<span style={{ fontSize: "0.55rem", opacity: 0.5 }}>◆</span>
-          </span>
-        ))}
+    <div
+      style={{
+        background: C.greenMid,
+        padding: "14px 0",
+        overflow: "hidden",
+        direction: "ltr",
+      }}
+    >
+      {/*
+        The outer div holds TWO identical copies of the text.
+        It is translated from -50% to 0 so the second copy
+        fills the screen as the first exits — perfectly seamless.
+      */}
+      <div className="marquee-outer">
+        <span style={textStyle}>{MARQUEE_TEXT}</span>
+        <span style={textStyle} aria-hidden="true">{MARQUEE_TEXT}</span>
       </div>
     </div>
   );
