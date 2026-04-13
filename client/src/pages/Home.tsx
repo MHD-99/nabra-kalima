@@ -134,7 +134,7 @@ function Hero() {
           <span style={{ fontSize: "0.6rem" }}>◆</span> صناعة القادة المتحدثين المؤثرين
         </div>
         <h1 className="fade-up" style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 800, lineHeight: 1.25, marginBottom: 10, color: C.white, animationDelay: "0.1s" }}>
-          اصنع صوتك<br /><span style={{ color: C.greenTeal }}>واصنع تأثيرك</span>
+          كل صوت<br /><span style={{ color: C.greenTeal }}>يستحق أن يُسمع</span>
         </h1>
         <p className="fade-up" style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", color: "rgba(255,255,255,0.5)", fontWeight: 300, marginBottom: 30, animationDelay: "0.2s" }}>
           حين تتكلم… يتوقف العالم ليسمعك
@@ -526,7 +526,7 @@ function Contact() {
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, maxWidth: 600, marginBottom: 36 }}>سواء كانت لديك استفسارات أو تريد مزيدًا من المعلومات، فريقنا جاهز للرد في أي وقت.</p>
           {[
             { href: "tel:+966536946260", icon: "☏", label: "الهاتف والواتساب", value: "+966 53 694 6260", ltr: true },
-            { href: "mailto:nabratkalima@gmail.com", icon: "✉", label: "البريد الإلكتروني", value: "nabratkalima@gmail.com", ltr: true },
+            { href: "mailto:info@nabra-sa.com", icon: "✉", label: "البريد الإلكتروني", value: "info@nabra-sa.com", ltr: true },
             { href: undefined, icon: "◎", label: "الموقع", value: "أبها — حي المنهل، المملكة العربية السعودية" },
           ].map((item, i) => {
             const inner = (
@@ -598,7 +598,7 @@ function Footer() {
         {[
           { title: "روابط سريعة", links: [["من نحن", "#about"], ["البرامج والخدمات", "#programs"], ["قصص النجاح", "#testimonials"], ["التعليقات", "#comments"], ["سجّل الآن", "#register"]] },
           { title: "البرامج", links: [["برامج الكبار", "#programs"], ["برامج الصغار", "#programs"], ["الأمسيات والفعاليات", "#programs"], ["استشارات تطويرية", "#programs"], ["صناعة المحتوى", "#programs"]] },
-          { title: "تواصل", links: [["nabratkalima@gmail.com", "mailto:nabratkalima@gmail.com"], ["واتساب: 0536946260", "https://wa.me/966536946260"], ["X: @nabratkalima", "https://x.com/nabratkalima?s=21"], ["Instagram: @nabrat.kalima", "https://www.instagram.com/nabrat.kalima"], ["TikTok: @nabratkalima", "https://www.tiktok.com/@nabratkalima"]] },
+          { title: "تواصل", links: [["info@nabra-sa.com", "mailto:info@nabra-sa.com"], ["واتساب: 0536946260", "https://wa.me/966536946260"], ["X: @nabratkalima", "https://x.com/nabratkalima?s=21"], ["Instagram: @nabrat.kalima", "https://www.instagram.com/nabrat.kalima"], ["TikTok: @nabratkalima", "https://www.tiktok.com/@nabratkalima"]] },
         ].map(col => (
           <div key={col.title}>
             <div style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.6)", fontWeight: 700, marginBottom: 16, letterSpacing: 1 }}>{col.title}</div>
