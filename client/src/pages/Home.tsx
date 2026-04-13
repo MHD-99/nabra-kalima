@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { trpc } from "@/lib/trpc";
 
 // Brand colors
 const C = {
@@ -440,14 +441,18 @@ function Comments() {
 // ── Register ──────────────────────────────────────────────────
 function Register() {
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", city: "", interest: "", message: "" });
   const inputStyle: React.CSSProperties = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "12px 16px", color: C.white, fontSize: "0.95rem", fontFamily: "'Tajawal', sans-serif", outline: "none", direction: "rtl" };
   const labelStyle: React.CSSProperties = { display: "block", fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", marginBottom: 7, fontWeight: 500 };
 
+  const submitMutation = trpc.registration.submit.useMutation({
+    onSuccess: () => { setSubmitted(true); },
+    onError: (err) => { alert("حدث خطأ أثناء الإرسال: " + err.message); },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1400);
+    submitMutation.mutate(formData);
   };
 
   return (
@@ -477,14 +482,14 @@ function Register() {
           ) : (
             <form onSubmit={handleSubmit}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 0 }} className="form-row">
-                <div style={{ marginBottom: 16 }}><label style={labelStyle}>الاسم الكامل</label><input style={inputStyle} placeholder="محمد أحمد" required /></div>
-                <div style={{ marginBottom: 16 }}><label style={labelStyle}>رقم الجوال</label><input style={{ ...inputStyle, direction: "ltr", textAlign: "right" }} type="tel" placeholder="05XXXXXXXX" required /></div>
+                <div style={{ marginBottom: 16 }}><label style={labelStyle}>الاسم الكامل</label><input style={inputStyle} placeholder="محمد أحمد" required value={formData.fullName} onChange={e => setFormData(p => ({ ...p, fullName: e.target.value }))} /></div>
+                <div style={{ marginBottom: 16 }}><label style={labelStyle}>رقم الجوال</label><input style={{ ...inputStyle, direction: "ltr", textAlign: "right" }} type="tel" placeholder="05XXXXXXXX" required value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} /></div>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="form-row">
-                <div style={{ marginBottom: 16 }}><label style={labelStyle}>البريد الإلكتروني</label><input style={{ ...inputStyle, direction: "ltr", textAlign: "right" }} type="email" placeholder="your@email.com" required /></div>
+                <div style={{ marginBottom: 16 }}><label style={labelStyle}>البريد الإلكتروني</label><input style={{ ...inputStyle, direction: "ltr", textAlign: "right" }} type="email" placeholder="your@email.com" required value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} /></div>
                 <div style={{ marginBottom: 16 }}>
                   <label style={labelStyle}>المدينة</label>
-                  <select style={{ ...inputStyle, cursor: "pointer" }} required>
+                  <select style={{ ...inputStyle, cursor: "pointer" }} required value={formData.city} onChange={e => setFormData(p => ({ ...p, city: e.target.value }))}>
                     <option value="" disabled>اختر مدينتك</option>
                     {["أبها", "خميس مشيط", "الرياض", "جدة", "الدمام", "مكة المكرمة", "المدينة المنورة", "الخبر", "تبوك", "مدينة أخرى"].map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -492,17 +497,17 @@ function Register() {
               </div>
               <div style={{ marginBottom: 16 }}>
                 <label style={labelStyle}>نوع الاهتمام</label>
-                <select style={{ ...inputStyle, cursor: "pointer" }} required>
+                <select style={{ ...inputStyle, cursor: "pointer" }} required value={formData.interest} onChange={e => setFormData(p => ({ ...p, interest: e.target.value }))}>
                   <option value="" disabled>ما الذي تبحث عنه؟</option>
                   {["برامج تدريبية للكبار", "برامج تدريبية للصغار", "تنظيم أمسيات وفعاليات", "استشارات تطويرية وشخصية", "توفير متحدثين للجهات", "صناعة المحتوى والكتابة الإبداعية", "فن إيصال الفكرة للمستثمر", "لست متأكدًا — أريد استشارة"].map(o => <option key={o} value={o}>{o}</option>)}
                 </select>
               </div>
               <div style={{ marginBottom: 16 }}>
                 <label style={labelStyle}>رسالتك (اختياري)</label>
-                <textarea style={{ ...inputStyle, resize: "vertical", minHeight: 90 }} placeholder="أخبرنا عن هدفك أو أي سؤال لديك…" />
+                <textarea style={{ ...inputStyle, resize: "vertical", minHeight: 90 }} placeholder="أخبرنا عن هدفك أو أي سؤال لديك…" value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} />
               </div>
-              <button type="submit" disabled={loading} style={{ width: "100%", background: loading ? C.greenDark : C.greenMid, color: C.white, border: "none", padding: 16, borderRadius: 6, fontSize: "1.05rem", fontWeight: 700, fontFamily: "'Tajawal', sans-serif", cursor: loading ? "not-allowed" : "pointer", transition: "all 0.3s", display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
-                {loading ? "...جاري الإرسال" : "سجّل الآن — ابدأ التحوّل ←"}
+              <button type="submit" disabled={submitMutation.isPending} style={{ width: "100%", background: submitMutation.isPending ? C.greenDark : C.greenMid, color: C.white, border: "none", padding: 16, borderRadius: 6, fontSize: "1.05rem", fontWeight: 700, fontFamily: "'Tajawal', sans-serif", cursor: submitMutation.isPending ? "not-allowed" : "pointer", transition: "all 0.3s", display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
+                {submitMutation.isPending ? "...جاري الإرسال" : "سجّل الآن — ابدأ التحوّل ←"}
               </button>
               <p style={{ textAlign: "center", fontSize: "0.78rem", color: "rgba(255,255,255,0.25)", marginTop: 14 }}>بياناتك محمية تمامًا ولن تُشارك مع أي طرف ثالث</p>
             </form>
