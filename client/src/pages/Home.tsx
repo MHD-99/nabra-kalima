@@ -14,7 +14,7 @@ const C = {
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663245268173/4epBMqsQxCQ6Bj7qS23jEL/nabra-logo_5aeb3600.png";
 
 // ── Logo ──────────────────────────────────────────────────
-function LogoIcon({ size = 72 }: { size?: number; inverted?: boolean }) {
+function LogoIcon({ size = 80 }: { size?: number; inverted?: boolean }) {
   return (
     <img src={LOGO_URL} alt="شعار نبرة كلمة" width={size} height={size} style={{ objectFit: "contain", display: "block", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.3))" }} />
   );
@@ -72,10 +72,10 @@ function Nav() {
         transition: "all 0.3s", fontFamily: "'Tajawal', sans-serif",
       }}>
         <a href="#hero" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <LogoIcon size={72} />
+          <LogoIcon size={80} />
           <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
-            <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.15rem", fontWeight: 700, color: C.white }}>نبرة كلمة</span>
-            <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "0.68rem", fontWeight: 400, color: C.greenTeal, letterSpacing: "0.5px" }}>Nabrat Kalima</span>
+            <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.35rem", fontWeight: 700, color: C.white }}>نبرة كلمة</span>
+            <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "0.78rem", fontWeight: 400, color: C.greenTeal, letterSpacing: "0.5px" }}>Nabrat Kalima</span>
           </div>
         </a>
 
@@ -587,7 +587,7 @@ function Footer() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 40, marginBottom: 40, flexWrap: "wrap", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: 280 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <LogoIcon size={64} />
+            <LogoIcon size={70} />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
               <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.1rem", fontWeight: 700, color: C.white }}>نبرة كلمة</span>
               <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "0.65rem", fontWeight: 400, color: C.greenTeal, letterSpacing: "0.5px" }}>Nabrat Kalima</span>
