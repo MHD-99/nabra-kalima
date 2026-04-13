@@ -225,7 +225,7 @@ function About() {
           <SectionTitle>نبرة كلمة…<br /><span style={{ color: C.greenTeal }}>حيث يُولد المتحدثون</span></SectionTitle>
           <Divider />
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, maxWidth: 600, marginBottom: 20 }}>
-            <strong style={{ color: C.greenTeal }}>رؤيتنا:</strong> أن تصنع نبرة جيلاً واثقًا ومؤثرًا، من الطفولة إلى القيادة، عبر تطوير الصوت والحضور والكلمة، وتقديم تجارب تجمع بين التحفيز والفكر بروح عربية أصيلة.
+            <strong style={{ color: C.greenTeal }}>رؤيتنا:</strong> أن تصنع نبرة جيلاً واثقًا ومؤثرًا، من الطفولة إلى القيادة — عبر تطوير الصوت والحضور والكلمة، وتقديم تجارب تجمع بين التحفيز والفكر بروح عربية أصيلة.
           </p>
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, maxWidth: 600, marginBottom: 28 }}>
             <strong style={{ color: C.greenTeal }}>من نحن؟</strong> نبرة كلمة مشروع سعودي يطوّر مهارات القيادة والإلقاء والخطابة عبر برامج تدريبية تطبيقية، وينظم أمسيات ثقافية وفكرية تبرز أفكار ومواهب أبناء وبنات المنطقة.
