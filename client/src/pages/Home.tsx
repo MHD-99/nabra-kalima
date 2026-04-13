@@ -250,7 +250,7 @@ function About() {
             <p style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.35rem", fontStyle: "italic", color: "rgba(109,194,183,0.9)", lineHeight: 1.75, marginBottom: 20, fontWeight: 500 }}>
               "لم تُغيِّر الكلمةُ التاريخَ فحسب، بل غيّرت مصائر الناس — وصوتك هو مفتاح ذلك التغيير."
             </p>
-            <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>— فلسفة نبرة الكلمة</div>
+            <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>— فلسفة نبرة كلمة</div>
           </div>
           <div style={{ marginTop: 24, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             {[["٢٠٢٥", "سنة التأسيس"], ["+١٢", "مدرب متخصص"]].map(([num, label]) => (
