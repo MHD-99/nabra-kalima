@@ -14,9 +14,9 @@ const C = {
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663245268173/4epBMqsQxCQ6Bj7qS23jEL/nabra-logo_5aeb3600.png";
 
 // ── Logo ──────────────────────────────────────────────────
-function LogoIcon({ size = 44 }: { size?: number; inverted?: boolean }) {
+function LogoIcon({ size = 56 }: { size?: number; inverted?: boolean }) {
   return (
-    <img src={LOGO_URL} alt="شعار نبرة كلمة" width={size} height={size} style={{ objectFit: "contain", display: "block" }} />
+    <img src={LOGO_URL} alt="شعار نبرة كلمة" width={size} height={size} style={{ objectFit: "contain", display: "block", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.3))" }} />
   );
 }
 
@@ -72,7 +72,7 @@ function Nav() {
         transition: "all 0.3s", fontFamily: "'Tajawal', sans-serif",
       }}>
         <a href="#hero" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <LogoIcon size={44} />
+          <LogoIcon size={56} />
           <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
             <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.15rem", fontWeight: 700, color: C.white }}>نبرة كلمة</span>
             <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "0.68rem", fontWeight: 400, color: C.greenTeal, letterSpacing: "0.5px" }}>Nabrat Kalima</span>
@@ -225,10 +225,10 @@ function About() {
           <SectionTitle>نبرة كلمة…<br /><span style={{ color: C.greenTeal }}>حيث يُولد المتحدثون</span></SectionTitle>
           <Divider />
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, maxWidth: 600, marginBottom: 20 }}>
-            نبرة كلمة مشروع سعودي يطوّر مهارات القيادة والإلقاء والخطابة عبر برامج تدريبية تطبيقية، وينظم أمسيات ثقافية وفكرية تبرز أفكار ومواهب أبناء وبنات المنطقة.
+            <strong style={{ color: C.greenTeal }}>رؤيتنا:</strong> أن تصنع نبرة جيلاً واثقًا ومؤثرًا، من الطفولة إلى القيادة، عبر تطوير الصوت والحضور والكلمة، وتقديم تجارب تجمع بين التحفيز والفكر بروح عربية أصيلة.
           </p>
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, maxWidth: 600, marginBottom: 28 }}>
-            <strong style={{ color: C.greenTeal }}>رؤيتنا:</strong> أن تصنع نبرة جيلاً واثقًا ومؤثرًا، من الطفولة إلى القيادة، عبر تطوير الصوت والحضور والكلمة، وتقديم تجارب تجمع بين التحفيز والفكر بروح عربية أصيلة.
+            <strong style={{ color: C.greenTeal }}>من نحن؟</strong> نبرة كلمة مشروع سعودي يطوّر مهارات القيادة والإلقاء والخطابة عبر برامج تدريبية تطبيقية، وينظم أمسيات ثقافية وفكرية تبرز أفكار ومواهب أبناء وبنات المنطقة.
           </p>
           {[
             ["◈", "تدريب تطبيقي أمام الجمهور", "برامجنا مبنية على التطبيق الفعلي المباشر أمام الجمهور لضمان تغيير حقيقي ومستدام."],
@@ -587,7 +587,7 @@ function Footer() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 40, marginBottom: 40, flexWrap: "wrap", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: 280 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-            <LogoIcon size={36} inverted />
+            <LogoIcon size={48} />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
               <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.1rem", fontWeight: 700, color: C.white }}>نبرة كلمة</span>
               <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "0.65rem", fontWeight: 400, color: C.greenTeal, letterSpacing: "0.5px" }}>Nabrat Kalima</span>
