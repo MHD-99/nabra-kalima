@@ -11,19 +11,12 @@ const C = {
   white: "#FFFFFF",
 };
 
-// ── Logo SVG ──────────────────────────────────────────────────
-function LogoIcon({ size = 44, inverted = false }: { size?: number; inverted?: boolean }) {
-  const bodyColor = inverted ? C.white : C.greenMid;
-  const podiumColor = inverted ? C.greenTeal : C.greenDark;
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663245268173/4epBMqsQxCQ6Bj7qS23jEL/nabra-logo_5aeb3600.png";
+
+// ── Logo ──────────────────────────────────────────────────
+function LogoIcon({ size = 44 }: { size?: number; inverted?: boolean }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="22" y="82" width="56" height="8" rx="1" fill={podiumColor} />
-      <rect x="32" y="74" width="36" height="9" rx="1" fill={podiumColor} />
-      <rect x="44" y="50" width="12" height="25" rx="2" fill={bodyColor} />
-      <path d="M44 58 L20 44" stroke={bodyColor} strokeWidth="7" strokeLinecap="round" />
-      <path d="M56 58 L80 44" stroke={bodyColor} strokeWidth="7" strokeLinecap="round" />
-      <circle cx="50" cy="36" r="11" fill={bodyColor} />
-    </svg>
+    <img src={LOGO_URL} alt="شعار نبرة كلمة" width={size} height={size} style={{ objectFit: "contain", display: "block" }} />
   );
 }
 
@@ -138,7 +131,7 @@ function Hero() {
 
       <div style={{ position: "relative", zIndex: 2, maxWidth: 700 }}>
         <div className="fade-up" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(109,194,183,0.1)", border: "1px solid rgba(109,194,183,0.3)", color: C.greenTeal, fontSize: "0.85rem", padding: "6px 16px", borderRadius: 50, marginBottom: 28, fontWeight: 500 }}>
-          <span style={{ fontSize: "0.6rem" }}>◆</span> أكاديمية صناعة المتحدثين المؤثرين
+          <span style={{ fontSize: "0.6rem" }}>◆</span> صناعة القادة المتحدثين المؤثرين
         </div>
         <h1 className="fade-up" style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 800, lineHeight: 1.25, marginBottom: 10, color: C.white, animationDelay: "0.1s" }}>
           اصنع صوتك<br /><span style={{ color: C.greenTeal }}>واصنع تأثيرك</span>
@@ -154,7 +147,7 @@ function Hero() {
           <BtnSecondary href="#programs">اكتشف البرامج</BtnSecondary>
         </div>
         <div className="fade-up" style={{ display: "flex", gap: 40, marginTop: 60, paddingTop: 40, borderTop: "1px solid rgba(255,255,255,0.08)", flexWrap: "wrap", animationDelay: "0.5s" }}>
-          {[["500+", "متحدث تم تطويره"], ["80+", "ورشة عمل منفّذة"], ["97%", "نسبة رضا المتدربين"], ["40+", "شركة شريكة"]].map(([num, label]) => (
+          {[["50+", "متحدث تم تطويره"], ["10+", "ورشة عمل منفّذة"], ["97%", "نسبة رضا المتدربين"]].map(([num, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "2.2rem", fontWeight: 800, color: C.greenTeal, display: "block" }}>{num}</span>
               <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.45)", marginTop: 2, display: "block" }}>{label}</span>
@@ -255,12 +248,12 @@ function About() {
           <div style={{ background: C.dark3, border: "1px solid rgba(109,194,183,0.15)", borderRadius: 8, padding: 40, position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: 0, right: 0, width: "100%", height: 3, background: `linear-gradient(90deg, transparent, ${C.greenTeal}, transparent)` }} />
             <p style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "1.35rem", fontStyle: "italic", color: "rgba(109,194,183,0.9)", lineHeight: 1.75, marginBottom: 20, fontWeight: 500 }}>
-              "أن تصنع نبرة جيلاً واثقًا ومؤثرًا، من الطفولة إلى القيادة — عبر تطوير الصوت والحضور والكلمة."
+              "لم تُغيِّر الكلمةُ التاريخَ فحسب، بل غيّرت مصائر الناس — وصوتك هو مفتاح ذلك التغيير."
             </p>
-            <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>— رؤية نبرة كلمة</div>
+            <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>— فلسفة نبرة الكلمة</div>
           </div>
           <div style={{ marginTop: 24, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            {[["٢٠١٩", "سنة التأسيس"], ["+١٢", "مدرب متخصص"]].map(([num, label]) => (
+            {[["٢٠٢٥", "سنة التأسيس"], ["+١٢", "مدرب متخصص"]].map(([num, label]) => (
               <div key={label} style={{ background: C.dark3, border: "1px solid rgba(109,194,183,0.12)", borderRadius: 8, padding: 24, textAlign: "center" }}>
                 <div style={{ fontSize: "1.8rem", fontWeight: 800, color: C.greenTeal, marginBottom: 4, fontFamily: "'Tajawal', sans-serif" }}>{num}</div>
                 <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>{label}</div>
@@ -327,39 +320,32 @@ function ProgramCard({ num, tag, title, desc, features, link, featured, delay }:
 }
 
 // ── Testimonials ──────────────────────────────────────────────
-const TESTIMONIALS = [
-  { big: true, stars: 5, text: "قبل نبرة كلمة، كنت أتجنب الحديث أمام أي مجموعة، حتى في الاجتماعات الصغيرة. بعد البرنامج، قدّمت محاضرة أمام ٣٠٠ شخص وتلقّيت تصفيقًا لم أنسه حتى اليوم. هذه الأكاديمية لم تُعلّمني الإلقاء فقط، علّمتني أن أصدّق في نفسي.", name: "أحمد العمري", role: "مدير تنفيذي، أبها", initials: "أع" },
-  { stars: 5, text: "الفرق الذي أحدثته نبرة كلمة في تعاملي مع العملاء لا يُقدَّر. مبيعاتي ارتفعت ٤٠٪ لأن طريقة تواصلي تغيّرت جذريًا.", name: "سارة المطيري", role: "رائدة أعمال، أبها", initials: "سم" },
-  { stars: 5, text: "درّبت فريق مبيعاتي المكوّن من ٢٥ شخصًا. النتائج كانت مبهرة خلال أسبوعين فقط من انتهاء البرنامج. أنصح كل شركة بهذه التجربة.", name: "خالد الحربي", role: "مدير مبيعات، أبها", initials: "خح" },
-  { stars: 5, text: "كنت خائفة جدًا من الكاميرا. الآن لديّ قناة على يوتيوب وأتحدث بثقة كاملة. شكرًا نبرة كلمة.", name: "نورة الرشيد", role: "صانعة محتوى", initials: "نر" },
-  { stars: 5, text: "حضرت ورشة الإلقاء المكثّفة وكانت من أفضل الاستثمارات في مسيرتي. أسلوب التدريب احترافي ومختلف تمامًا.", name: "فيصل العتيبي", role: "طبيب ومحاضر", initials: "فع" },
-];
-
 function Testimonials() {
   return (
     <section id="testimonials" style={{ padding: "100px 5%", background: C.dark2 }}>
       <div className="reveal" style={{ maxWidth: 600, marginBottom: 60 }}>
         <SectionTag>قصص النجاح</SectionTag>
-        <SectionTitle>أصواتٌ <span style={{ color: C.greenTeal }}>صنعناها معًا</span></SectionTitle>
-        <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9 }}>كلامهم أصدق دليل على ما تصنعه نبرة كلمة.</p>
+        <SectionTitle><span style={{ color: C.greenTeal }}>قصة نجاح</span></SectionTitle>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-        {TESTIMONIALS.map((t, i) => (
-          <div key={t.name} className="reveal" style={{ transitionDelay: `${i * 0.1}s`, gridColumn: t.big ? "span 2" : "span 1", background: t.big ? `linear-gradient(135deg, rgba(27,80,62,0.4) 0%, ${C.dark3} 50%)` : C.dark3, border: `1px solid ${t.big ? "rgba(109,194,183,0.2)" : "rgba(109,194,183,0.1)"}`, borderRadius: 8, padding: 32, position: "relative", transition: "all 0.3s" }}>
-            <div style={{ position: "absolute", top: 24, left: 28, color: C.greenTeal, fontSize: "0.8rem", letterSpacing: 2 }}>{"★".repeat(t.stars)}</div>
-            <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "4rem", color: "rgba(109,194,183,0.2)", lineHeight: 0.8, marginBottom: 16, display: "block" }}>"</span>
-            <p style={{ fontSize: t.big ? "1.1rem" : "0.975rem", color: t.big ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.7)", lineHeight: 1.9, marginBottom: 24, fontStyle: "italic" }}>{t.text}</p>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.greenMid, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "1rem", color: C.white, flexShrink: 0 }}>{t.initials}</div>
-              <div>
-                <div style={{ fontWeight: 600, fontSize: "0.95rem", color: C.white }}>{t.name}</div>
-                <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{t.role}</div>
-              </div>
+      <div className="reveal" style={{ maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ background: `linear-gradient(135deg, rgba(27,80,62,0.45) 0%, ${C.dark3} 60%)`, border: "1px solid rgba(109,194,183,0.2)", borderRadius: 8, padding: "48px 52px", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, ${C.greenDark}, ${C.greenMid}, ${C.greenTeal})`, borderRadius: "8px 8px 0 0" }} />
+          <span style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "5rem", color: "rgba(109,194,183,0.15)", lineHeight: 0.7, marginBottom: 20, display: "block" }}>"</span>
+          <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)", lineHeight: 2, marginBottom: 32, fontStyle: "italic" }}>
+            بدأت نبرة كفكرة بسيطة تحمل شغفًا بالكلمة والتأثير، ورغبة في صناعة مساحات تُنمي الصوت والحضور. مع الوقت، تشكلت الرؤية وبدأت الملامح تتضح، وكان للدعم دور كبير في تحويلها من فكرة إلى واقع.
+          </p>
+          <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)", lineHeight: 2, marginBottom: 40, fontStyle: "italic" }}>
+            وكانت سجى من أوائل من آمن بالفكرة وساندها، فكان حضورها ودعمها جزءًا من رحلة التأسيس والنجاح. اليوم، نبرة ليست مجرد مشروع، بل تجربة تصنع الأثر وتمنح كل صوت فرصته ليُسمع.
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <div style={{ width: 52, height: 52, borderRadius: "50%", background: C.greenMid, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "1.1rem", color: C.white, flexShrink: 0 }}>مش</div>
+            <div>
+              <div style={{ fontWeight: 700, fontSize: "1.05rem", color: C.white }}>محمد الشبيلي</div>
+              <div style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", marginTop: 3 }}>مؤسس نبرة كلمة</div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
-      <style>{`@media(max-width:900px){[style*="span 2"]{grid-column:span 1!important;}}`}</style>
     </section>
   );
 }
