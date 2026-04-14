@@ -26,6 +26,7 @@ export const appRouter = router({
           fullName: z.string().min(2, "الاسم مطلوب"),
           phone: z.string().min(9, "رقم الجوال مطلوب"),
           email: z.string().email("البريد الإلكتروني غير صحيح"),
+          age: z.coerce.number().min(5, "الحد الأدنى للعمر 5 سنوات").max(100, "الحد الأقصى للعمر 100 سنة"),
           city: z.string().min(1, "المدينة مطلوبة"),
           interest: z.string().min(1, "نوع الاهتمام مطلوب"),
           message: z.string().optional(),
@@ -84,6 +85,10 @@ export const appRouter = router({
         <div class="value">📧 ${input.email}</div>
       </div>
       <div class="field">
+        <div class="label">العمر</div>
+        <div class="value">👤 ${input.age} سنة</div>
+      </div>
+      <div class="field">
         <div class="label">المدينة</div>
         <div class="value">🏙️ ${input.city}</div>
       </div>
@@ -113,6 +118,7 @@ export const appRouter = router({
 الاسم: ${input.fullName}
 الجوال: ${input.phone}
 البريد: ${input.email}
+العمر: ${input.age} سنة
 المدينة: ${input.city}
 نوع الاهتمام: ${input.interest}
 ${input.message ? `الرسالة: ${input.message}` : ""}

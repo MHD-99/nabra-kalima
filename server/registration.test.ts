@@ -31,11 +31,10 @@ function createPublicContext(): TrpcContext {
 describe("registration.submit", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Ensure RESEND_API_KEY is set so the email branch is entered
     process.env.RESEND_API_KEY = "re_test_placeholder";
   });
 
-  it("submits registration with all required fields and returns success", async () => {
+  it("submits registration with all required fields including age and returns success", async () => {
     const ctx = createPublicContext();
     const caller = appRouter.createCaller(ctx);
 
@@ -43,6 +42,7 @@ describe("registration.submit", () => {
       fullName: "محمد الشبيلي",
       phone: "0536946260",
       email: "test@example.com",
+      age: 28,
       city: "أبها",
       interest: "برامج تدريبية للكبار",
       message: "أريد الانضمام للبرنامج",
@@ -51,7 +51,7 @@ describe("registration.submit", () => {
     expect(result).toEqual({ success: true });
   });
 
-  it("sends email with correct from, to, and subject", async () => {
+  it("sends email with correct from, to, subject, and includes age", async () => {
     const ctx = createPublicContext();
     const caller = appRouter.createCaller(ctx);
 
@@ -59,6 +59,7 @@ describe("registration.submit", () => {
       fullName: "سارة أحمد",
       phone: "0501234567",
       email: "sara@example.com",
+      age: 22,
       city: "الرياض",
       interest: "استشارات تطويرية وشخصية",
     });
@@ -68,6 +69,8 @@ describe("registration.submit", () => {
     expect(callArgs.from).toBe("نبرة <info@nabra-sa.com>");
     expect(callArgs.to).toEqual(["hmoody0990@gmail.com"]);
     expect(callArgs.subject).toBe("تسجيل جديد - نبرة");
+    expect(callArgs.html).toContain("22");
+    expect(callArgs.text).toContain("22 سنة");
   });
 
   it("submits registration without optional message field", async () => {
@@ -78,11 +81,44 @@ describe("registration.submit", () => {
       fullName: "سارة أحمد",
       phone: "0501234567",
       email: "sara@example.com",
+      age: 35,
       city: "الرياض",
       interest: "استشارات تطويرية وشخصية",
     });
 
     expect(result).toEqual({ success: true });
+  });
+
+  it("rejects submission with age below minimum (4)", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.registration.submit({
+        fullName: "محمد",
+        phone: "0536946260",
+        email: "test@example.com",
+        age: 4,
+        city: "أبها",
+        interest: "برامج تدريبية للكبار",
+      })
+    ).rejects.toThrow();
+  });
+
+  it("rejects submission with age above maximum (101)", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.registration.submit({
+        fullName: "محمد",
+        phone: "0536946260",
+        email: "test@example.com",
+        age: 101,
+        city: "أبها",
+        interest: "برامج تدريبية للكبار",
+      })
+    ).rejects.toThrow();
   });
 
   it("rejects submission with invalid email", async () => {
@@ -94,6 +130,7 @@ describe("registration.submit", () => {
         fullName: "محمد",
         phone: "0536946260",
         email: "invalid-email",
+        age: 25,
         city: "أبها",
         interest: "برامج تدريبية للكبار",
       })
@@ -109,6 +146,7 @@ describe("registration.submit", () => {
         fullName: "م",
         phone: "0536946260",
         email: "test@example.com",
+        age: 25,
         city: "أبها",
         interest: "برامج تدريبية للكبار",
       })

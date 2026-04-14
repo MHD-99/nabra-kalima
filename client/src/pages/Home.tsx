@@ -462,7 +462,7 @@ function Comments() {
 // ── Register ──────────────────────────────────────────────────
 function Register() {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", city: "", interest: "", message: "" });
+  const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", age: "", city: "", interest: "", message: "" });
   const inputStyle: React.CSSProperties = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "12px 16px", color: C.white, fontSize: "0.95rem", fontFamily: "'Tajawal', sans-serif", outline: "none", direction: "rtl" };
   const labelStyle: React.CSSProperties = { display: "block", fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", marginBottom: 7, fontWeight: 500 };
 
@@ -508,7 +508,10 @@ function Register() {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="form-row">
                 <div style={{ marginBottom: 16 }}><label style={labelStyle}>البريد الإلكتروني</label><input style={{ ...inputStyle, direction: "ltr", textAlign: "right" }} type="email" placeholder="your@email.com" required value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} /></div>
-                <div style={{ marginBottom: 16 }}>
+                <div style={{ marginBottom: 16 }}><label style={labelStyle}>العمر</label><input style={{ ...inputStyle, direction: "ltr", textAlign: "right" }} type="number" min="5" max="100" placeholder="عمرك" required value={formData.age} onChange={e => setFormData(p => ({ ...p, age: e.target.value }))} /></div>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="form-row">
+                <div style={{ marginBottom: 16, gridColumn: "1 / -1" }}>
                   <label style={labelStyle}>المدينة</label>
                   <select style={{ ...inputStyle, cursor: "pointer" }} required value={formData.city} onChange={e => setFormData(p => ({ ...p, city: e.target.value }))}>
                     <option value="" disabled>اختر مدينتك</option>
@@ -539,9 +542,81 @@ function Register() {
     </section>
   );
 }
+// ── Speakers ──────────────────────────────────────────────────
+function Speakers() {
+  return (
+    <section id="speakers" style={{ padding: "110px 5%", background: C.darkBg, position: "relative", overflow: "hidden", textAlign: "center" }}>
+      {/* Decorative radial glow */}
+      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 60%, rgba(109,194,183,0.07) 0%, transparent 65%)", pointerEvents: "none" }} />
+      {/* Decorative top line */}
+      <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 120, height: 2, background: `linear-gradient(90deg, transparent, ${C.greenTeal}, transparent)` }} />
 
-// ── Contact ───────────────────────────────────────────────────
-function Contact() {
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 820, margin: "0 auto" }} className="reveal">
+        {/* Tag */}
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: C.greenTeal, fontSize: "0.82rem", letterSpacing: 2, textTransform: "uppercase", marginBottom: 20, fontWeight: 600 }}>
+          <span style={{ display: "block", width: 24, height: 1, background: C.greenTeal }} />
+          نخبة المتحدثين • المنطقة الجنوبية
+          <span style={{ display: "block", width: 24, height: 1, background: C.greenTeal }} />
+        </div>
+
+        {/* Main headline */}
+        <h2 style={{ fontFamily: "'Tajawal', sans-serif", fontSize: "clamp(2.2rem, 5vw, 3.6rem)", fontWeight: 800, lineHeight: 1.25, marginBottom: 28, color: C.white }}>
+          من عسير… <span style={{ color: C.greenTeal }}>إلى منصات التأثير</span>
+        </h2>
+
+        {/* Decorative divider */}
+        <div style={{ width: 60, height: 2, background: `linear-gradient(90deg, transparent, ${C.greenTeal}, transparent)`, margin: "0 auto 36px" }} />
+
+        {/* Body paragraphs */}
+        <div style={{ fontSize: "1.08rem", color: "rgba(255,255,255,0.6)", lineHeight: 2, marginBottom: 20, maxWidth: 720, margin: "0 auto 20px" }}>
+          في نبرة، ننطلق من عمق الهوية الجنوبية، حيث تُصنع الكلمة في المجالس، ويُبنى الحضور في اللقاءات، وتنمو مهارات الحديث منذ الصغر لتصبح جزءًا أصيلًا من شخصية الإنسان
+        </div>
+        <div style={{ fontSize: "1.08rem", color: "rgba(255,255,255,0.6)", lineHeight: 2, marginBottom: 20, maxWidth: 720, margin: "0 auto 20px" }}>
+          نحن لا نصنع متحدثين، بل نكشف عن أصوات تحمل أثرًا، ونمنحها المساحة لتُسمع وتؤثّر
+        </div>
+        <div style={{ fontSize: "1.08rem", color: "rgba(255,255,255,0.6)", lineHeight: 2, marginBottom: 36, maxWidth: 720, margin: "0 auto 36px" }}>
+          نسعى لأن نكون المظلة التي تجمع نخبة المتحدثين في عسير والمنطقة الجنوبية، في مختلف المجالات والتخصصات، ونفتح لهم أبواب الظهور، والتأثير، والفرص
+        </div>
+
+        {/* Highlighted callout */}
+        <div style={{ background: "rgba(109,194,183,0.07)", border: "1px solid rgba(109,194,183,0.25)", borderRadius: 10, padding: "24px 36px", marginBottom: 44, display: "inline-block", maxWidth: 680 }}>
+          <p style={{ fontSize: "1.15rem", color: C.greenTeal, fontWeight: 600, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>
+            إذا كنت تمتلك رسالة، أو شغفًا بالكلمة، أو قدرة على التأثير، فمكانك هنا
+          </p>
+        </div>
+
+        {/* CTA button */}
+        <div>
+          <a
+            href="#register"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              background: C.greenMid,
+              color: C.white,
+              padding: "16px 44px",
+              borderRadius: 8,
+              fontSize: "1.1rem",
+              fontWeight: 700,
+              fontFamily: "'Tajawal', sans-serif",
+              textDecoration: "none",
+              transition: "all 0.3s",
+              boxShadow: "0 4px 24px rgba(103,174,110,0.25)",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = C.greenTeal; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(109,194,183,0.35)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = C.greenMid; e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 24px rgba(103,174,110,0.25)"; }}
+          >
+            انضم كمتحدث ←
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Contact ─────────────────────────────────────────────────────
+function Contact(){
   return (
     <section id="contact" style={{ padding: "80px 5%", background: C.darkBg }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }} className="contact-grid">
@@ -676,6 +751,7 @@ export default function Home() {
       <Testimonials />
       <Comments />
       <Register />
+      <Speakers />
       <Contact />
       <Footer />
       <ScrollTop />
