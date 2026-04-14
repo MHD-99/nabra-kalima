@@ -637,7 +637,10 @@ function Footer() {
         ))}
       </div>
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, position: "relative", zIndex: 1 }}>
-        <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)" }}>© 2025 <span style={{ color: C.greenTeal }}>نبرة كلمة</span>. جميع الحقوق محفوظة.</div>
+        <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)", lineHeight: 1.8 }}>
+          <div>© 2025 <span style={{ color: C.greenTeal }}>نبرة كلمة</span>. جميع الحقوق محفوظة.</div>
+          <div>سجل تجاري رقم: 7051011760</div>
+        </div>
         <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)" }}>أبها — حي المنهل، المملكة العربية السعودية</div>
       </div>
     </footer>
