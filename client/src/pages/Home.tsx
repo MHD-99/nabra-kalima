@@ -716,7 +716,7 @@ function Footer() {
           <div>© 2025 <span style={{ color: C.greenTeal }}>نبرة كلمة</span>. جميع الحقوق محفوظة.</div>
           <div>سجل تجاري رقم: 7051011760</div>
         </div>
-        <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)" }}>أبها — حي المنهل، المملكة العربية السعودية</div>
+        <div style={{ fontSize: '11px', color: "rgba(255,255,255,0.25)" }}>أبها — حي المنهل Work Coner، المملكة العربية السعودية</div>
       </div>
     </footer>
   );
