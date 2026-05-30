@@ -1,16 +1,16 @@
 {
-      "buildCommand": "vite build",
-      "devCommand": "pnpm dev",
-      "installCommand": "pnpm install",
-      "framework": "vite",
-      "outputDirectory": "dist",
-      "env": {
-              "NODE_ENV": "production"
-      },
-      "rewrites": [
-              {
-                        "source": "/(.*)",
-                        "destination": "/index.html"
-              }
-      ]
+        "buildCommand": "vite build",
+        "devCommand": "pnpm dev",
+        "installCommand": "pnpm install",
+        "framework": "vite",
+        "outputDirectory": "dist/public",
+        "env": {
+                  "NODE_ENV": "production"
+        },
+        "rewrites": [
+                  {
+                              "source": "/(.*)",
+                              "destination": "/index.html"
+                  }
+        ]
 }
